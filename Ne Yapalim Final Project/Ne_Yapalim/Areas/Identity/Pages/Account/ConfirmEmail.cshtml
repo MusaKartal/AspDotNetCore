@@ -1,0 +1,15 @@
+﻿@page
+@model ConfirmEmailModel
+@{
+    ViewData["Title"] = "Başarıyla Onaylandı";
+}
+
+<div class="container" style="min-height:510px;">
+    <div class="row">
+        <div class="col-md">
+            <h1>@ViewData["Title"]</h1>
+            <p>Şimdi giriş yapabilirsiniz.</p>
+            <a class="btn btn-xl btn-success" id="confirm-link" asp-controller="Account" asp-action="HomePage">Giriş Yap</a>
+        </div>
+    </div>
+</div>

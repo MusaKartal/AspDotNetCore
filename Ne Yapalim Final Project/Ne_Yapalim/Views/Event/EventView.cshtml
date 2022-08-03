@@ -1,0 +1,163 @@
+﻿@model IEnumerable<Ne_Yapalim.Models.Events>
+
+@{
+    ViewData["Title"] = "EventView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Users = await UserManager.GetUserAsync(User);
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-lg-3 border-0 ">
+            <!-- Sidebar -->
+            <div class="d-flex flex-column flex-shrink-0 p-3  profilesidebar">
+                <img src="/images/@Users.ProfilPhoto" class="rounded float-left  card-img-top" alt="">
+                <br />
+                <a asp-area="" asp-controller="Account" asp-action="UserProfile" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                    <span class="fs-15">
+                        <span class="border-bottom rounded h4">@Users.Name.ToUpper() @Users.SurName.ToUpper()</span>
+                    </span>
+                </a>
+                <hr />
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a asp-area="" asp-controller="Event" asp-action="EventCreate" class="nav-link text-dark" aria-current="page">
+                            <i class="fas fa-calendar"></i>
+                            Etkinlik Oluştur
+                        </a>
+                        <hr />
+                    </li>
+                    <li class="nav-item">
+                        <a asp-area="" asp-controller="Event" asp-action="EventView" class="nav-link text-dark ">
+                            <i class="fas fa-calendar"></i>
+                            Etkinliklerim
+                        </a>
+                        <hr />
+                    </li>
+                </ul>
+            </div>
+            <!-- Sidebar -->
+        </div>
+        <div class="col-12 col-lg-9 mt-lg-5">
+            <div class="profileEventList">
+                <div class="my-3 p-3 ">
+                    <h6 class="border-bottom pb-2 mb-0">Etkinliklerim</h6>
+                    @foreach (var item in Model)
+                    {
+                        <!-- item -->
+                <div class="d-flex text-muted pt-3">
+                    @if (item.EventImage.Count > 0)
+                    {
+                        <img src="~/EventImage/@item.EventImage.First().Image" style="width: 125px; margin-right: 10px;" />
+                    }
+                    else
+                    {
+                        <img src="~/EventImage/placeholder.png" style="width: 125px; margin-right: 10px;" />
+                    }
+
+                <p class="pb-3 mb-0 small lh-sm border-bottom" style="width: 100%;">
+                    <strong class="d-block text-gray-dark">@Html.DisplayFor(modelItem => item.Title)</strong>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </p>
+                   
+
+                    <div class="pb-3 mb-0 small lh-sm border-bottom float-end">
+                        <div class="dropdown text-end" style="margin-right: 20px;">
+                            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                                İşlemler
+                            </a>
+                            <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
+                                <li><a class="dropdown-item" asp-action="Edit" asp-route-id="@item.Id">Düzenle</a></li>
+                                <li><a class="dropdown-item" asp-action="Delete" asp-route-id="@item.Id">Sil</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                        <!-- item -->
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<h1>EventView</h1>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Location)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EventCategory)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CustomUsers)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EventCategory.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomUsers.Name)
+                </td>
+                <td>
+
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>*@

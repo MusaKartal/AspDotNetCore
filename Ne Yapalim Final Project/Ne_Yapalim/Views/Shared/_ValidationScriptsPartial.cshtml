@@ -1,0 +1,30 @@
+﻿<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<script>
+    jQuery.extend(jQuery.validator.messages, {
+        required: "Bu alan zorunlu.",
+        min: jQuery.validator.format("Lütfen {0} değerinden daha yüksek bir değer girin.")
+    });
+
+    $(document).ready(function () {
+        console.log("ready!");
+
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0 so need to add 1 to make it 1!
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        today = yyyy + '-' + mm + '-' + dd;
+        const datePickers = document.querySelectorAll('input[type="datetime-local"]');
+
+        datePickers.forEach(datePicker => {
+            datePicker.setAttribute("min", today);
+        })
+    });
+</script>

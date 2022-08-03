@@ -1,0 +1,111 @@
+﻿@model IEnumerable<Ne_Yapalim.Models.Events>
+@{
+    ViewData["Title"] = "HomePage";
+    var Users = await UserManager.GetUserAsync(User);
+}
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-lg-3 border-0 ">
+            <!-- Sidebar -->
+            <div class="d-flex flex-column flex-shrink-0 p-3  profilesidebar">
+                <img src="/images/@Users.ProfilPhoto" class="rounded float-left  card-img-top" alt="">
+                <br />
+                <a asp-area="" asp-controller="Account" asp-action="UserProfile" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                    <span class="fs-15">
+                        <span class="border-bottom rounded h4">@Users.Name.ToUpper() @Users.SurName.ToUpper()</span>
+                    </span>
+                </a>
+                <hr />
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a asp-area="" asp-controller="Event" asp-action="EventCreate" class="nav-link text-dark" aria-current="page">
+                            <i class="fas fa-calendar"></i>
+                            Etkinlik Oluştur
+                        </a>
+                        <hr />
+                    </li>
+                    <li class="nav-item">
+                        <a asp-area="" asp-controller="Event" asp-action="EventView" class="nav-link text-dark ">
+                            <i class="fas fa-calendar"></i>
+                            Etkinliklerim
+                        </a>
+                        <hr />
+                    </li>   
+                </ul>
+            </div>
+            <!-- Sidebar -->
+        </div>
+        <div class="col-7 col-lg-9">
+            <div class="home-div ">
+                <div class="border-bottom border-sm-dark">
+                    <p class="h2">Hoş Geldiniz<strong class="h1">&nbsp;@Users.Name</strong></p>
+                </div>
+                <div class="font-weight-light col-7 col-lg-9">
+                    <p>Bugün <b>Ne Yapalım</b> diyorsanız doğru yere geldiniz.</p>
+                </div>
+
+            </div>
+            <div> <p>Etkinliklere buradan göz atabilirsiniz </p> </div>
+            @foreach (var item in Model)
+            {
+                <div class="profileEventList">
+                    <div class="shadow-sm">
+                        <small><i class="border-bottom p-2 text-muted">@Html.DisplayFor(modelItem => item.Date)</i></small>
+                        <!-- item -->
+                        <div class="d-flex text-muted pt-3">
+
+                            @if (item.EventImage.Count > 0)
+                            {
+                                <img class="m-2 ml-0" src="~/EventImage/@item.EventImage.First().Image" style="width: 300px;" />
+                            }
+                            else
+                            {
+                                <img class="m-2 ml-0" src="~/EventImage/placeholder.png" style="width: 300px;" />
+                            }
+
+                        <p class="mt-2 p-3 pt-0 mb-0 small lh-sm border-bottom" style="width: 100%;">
+                            <strong class="h4 d-block text-gray-dark">@Html.DisplayFor(modelItem => item.Title)</strong>
+                            @Html.DisplayFor(modelItem => item.Location)
+                        <br />
+                        @Html.DisplayFor(modelItem => item.Attendees.Count)
+                        </p>
+                        
+                            <div class="mt-2 pb-3 mb-0 small lh-sm border-bottom float-end">
+                                <a class="btn btn-outline-dark" asp-action="Details" asp-route-id="@item.Id">Detaylar</a>
+                            </div>
+                        </div>
+                        <!-- item -->
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+            @*@foreach (var item in Model)
+            {
+            <div class="projcard-container">
+                <div class="projcard projcard-blue">
+                    <div class="projcard-innerbox">
+                        <div class="projcard-textbox">
+                            <div class="projcard-title">@Html.DisplayFor(modelItem => item.Title)</div>
+                            <div class="projcard-subtitle">@Html.DisplayFor(modelItem => item.CustomUsers.Name)&ensp;@Html.DisplayFor(modelItem => item.CustomUsers.SurName)</div>
+                            <div class="projcard-subtitle">@Html.DisplayFor(modelItem => item.Date)</div>
+                            <div class="projcard-subtitle">@Html.DisplayFor(modelItem => item.Location)</div>
+                            <div class="projcard-bar"></div>
+                            <div class="projcard-description">@Html.DisplayFor(modelItem => item.Description)</div>
+                            <div class="projcard-tagbox">
+                                <span class="projcard-tag">@Html.DisplayFor(modelItem => item.Attendees.Count)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="btn btn-outline-primary" asp-action="Details" asp-route-id="@item.Id">Detaylar</a>
+            </div>
+                <br/>
+            }*@

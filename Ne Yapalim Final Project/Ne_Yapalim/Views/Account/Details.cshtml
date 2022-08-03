@@ -1,0 +1,276 @@
+﻿@model Ne_Yapalim.Models.Events
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@inject UserManager<CustomUser> UserManager
+@{var Users = await UserManager.GetUserAsync(User); }
+
+
+
+
+<!-- Event List Start -->
+<div class="container px-4 py-5 event-detail" id="custom-cards">
+    <div class="row align-items-stretch g-4 py-5 eventList1">
+        <div class="col-12 col-lg-6 align-items-center justify-content-center">
+            <h2 class="pb-2">@Html.DisplayFor(model => model.Title)</h2>
+            @foreach (var images in Model.EventImage)
+            {
+                    <div class="img">
+                        <img id="img-details" src="/EventImage/@images.Image" alt="" />
+                    </div>
+         
+            }
+            <div class="content">
+                <p>
+                    @Html.DisplayFor(model => model.Description)
+                </p>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-6 order-md-last">
+
+            <ul class="list-group mb-1 ">
+                <li class="list-group-item d-flex justify-content-between lh-sm ">
+                    <div class="pb-3 mb-0 small lh-sm border-bottom float-end">
+                        <div class="dropdown text-end" style="margin-right: 20px;">
+                            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle " id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <h6 class="ml-2">Etkinlik Kurucusu</h6>
+                            </a>
+                        </div>  
+                    </div>
+                </li>
+                
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0 ml-2">İsim Soyisim</h6>
+                    </div>
+                    <span class="text-muted mr-2">@Html.DisplayFor(model => model.CustomUsers.Name) @Html.DisplayFor(model => model.CustomUsers.SurName)</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0 ml-2">Email</h6>
+                    </div>
+                    <span class="text-muted mr-2">@Html.DisplayFor(model => model.CustomUsers.Email)</span>
+                </li>
+            </ul>
+
+
+
+            <ul class="list-group mb-3">
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div class="pb-3 mb-0 small lh-sm border-bottom float-end">
+                        <div class="dropdown text-end" style="margin-right: 20px;">
+                            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle ml-2" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <h6>Katılımcılar</h6>
+                            </a>
+                            <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
+                                <li>
+                                    <a class="dropdown-item">
+                                        <div>
+
+                                            <ul>
+                                                @foreach (var attendee in Model.Attendees)
+                                                {
+                                                    <li> <img src="~/images/@attendee.CustomUsers.ProfilPhoto" alt="mdo" width="32" height="32" class="rounded-circle" /> @attendee.CustomUsers.Name @attendee.CustomUsers.SurName <small>(@attendee.CustomUsers.UserName)</small></li>
+                                                }
+                                            </ul>
+
+
+                                        </div>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <span class="text-muted mr-2">@Html.DisplayFor(model => model.Attendees.Count)</span>
+                </li>
+
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0 ml-2">Konum</h6>
+                    </div>
+                    <span class="text-muted mr-2">@Html.DisplayFor(model => model.Location)</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0 ml-2">Tarih</h6>
+                    </div>
+                    <span class="text-muted mr-2"> @Html.DisplayFor(model => model.Date)</span>
+                </li>
+            </ul>
+            @if (Model.CustomUsers.Id != Users.Id)
+            {
+                @if (!Model.Attendees.Select(attendee => attendee.CustomUsers.Id).Contains(Users.Id))
+                {
+
+                    <form method="post" asp-action="Join">
+                        <input type="hidden" asp-for="Id" />
+                        <div>
+                            <button name="Button" type="submit" class="btn btn-primary my-2 btnStyle1 float-end" style="width: 50%;">Katıl</button>
+
+                        </div>
+                    </form>
+                }
+                else
+                {
+                    <form method="post" asp-action="Remove">
+                        <input type="hidden" asp-for="Id" />
+                        <div>
+                            <button name="Button" type="submit" class="btn btn-primary my-2 btnStyle1 float-end" style="width: 50%;">Ayrıl</button>
+
+                        </div>
+                    </form>
+                }
+
+            }
+            else
+            {
+                <form method="post" asp-action="Join">
+                    <input type="hidden" asp-for="Id" />
+                    <div>
+                        <button name="Button" type="submit" hidden>Katıl</button>
+                    </div>
+                </form>
+            }
+
+        </div>
+    </div>
+</div>
+<!-- Event List End -->
+<!-- Benzer etkinlikler -->
+<div class="album py-5 carStyle2">
+    <div class="container">
+        <h2 class="pb-2 border-bottom">Benzer Etkinlikler</h2>
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="col">
+                <div class="card shadow-sm">
+                    <a href="">
+                        <img src="https://media.kommunity.com/communities/geometry-venture-development/events/girisim-gelistirme-seminer-serisi-79-finansal-bakis-acisi-e36578d2/28210/girisimgelistirme2-1.png?p=event-640" />
+                        <div class="card-body">
+                            <p class="card-text">Yazılım Mülakatlarına Hazırlık #13</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">
+                                    <i class="far fa-calendar-alt"></i>
+                                    <span>01.05.2022 14.00</span>
+                                </small>
+                                <small class="text-muted">
+                                    <i class="fal fa-user-friends m-r-10"></i>
+                                    <small>65 üye katılıyor</small>
+                                </small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card shadow-sm">
+                    <a href="">
+                        <img src="https://media.kommunity.com/communities/geometry-venture-development/events/girisim-gelistirme-seminer-serisi-79-finansal-bakis-acisi-e36578d2/28210/girisimgelistirme2-1.png?p=event-640" />
+                        <div class="card-body">
+                            <p class="card-text">Yazılım Mülakatlarına Hazırlık #13</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">
+                                    <i class="far fa-calendar-alt"></i>
+                                    <span>01.05.2022 14.00</span>
+                                </small>
+                                <small class="text-muted">
+                                    <i class="fal fa-user-friends m-r-10"></i>
+                                    <small>65 üye katılıyor</small>
+                                </small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card shadow-sm">
+                    <a href="">
+                        <img src="https://media.kommunity.com/communities/geometry-venture-development/events/girisim-gelistirme-seminer-serisi-79-finansal-bakis-acisi-e36578d2/28210/girisimgelistirme2-1.png?p=event-640" />
+                        <div class="card-body">
+                            <p class="card-text">Yazılım Mülakatlarına Hazırlık #13</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">
+                                    <i class="far fa-calendar-alt"></i>
+                                    <span>01.05.2022 14.00</span>
+                                </small>
+                                <small class="text-muted">
+                                    <i class="fal fa-user-friends m-r-10"></i>
+                                    <small>65 üye katılıyor</small>
+                                </small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Benzer etkinlikler -->
+        
+
+
+
+
+
+
+
+
+
+
+@*<div>
+      
+            <ul>
+                @foreach (var attendee in Model.Attendees)
+                {
+                    <li>@attendee.CustomUsers.Name @attendee.CustomUsers.SurName <small>(@attendee.CustomUsers.UserName)</small></li>
+                }
+            </ul>
+
+        </dl>
+    </div>
+
+
+
+
+@if (Model.CustomUsers.Id != Users.Id)
+{
+    @if (!Model.Attendees.Select(attendee => attendee.CustomUsers.Id).Contains(Users.Id))
+    {
+
+        <form method="post" asp-action="Join">
+            <input type="hidden" asp-for="Id" />
+            <div>
+                <button name="Button" type="submit">Katıl</button>
+
+            </div>
+        </form>
+    }
+    else
+    {
+        <form method="post" asp-action="Remove">
+            <input type="hidden" asp-for="Id" />
+            <div>
+                <button name="Button" type="submit">Ayrıl</button>
+
+            </div>
+        </form>
+    }
+
+}
+else
+{
+    <form method="post" asp-action="Join">
+        <input type="hidden" asp-for="Id" />
+        <div>
+            <button name="Button" type="submit" hidden>Katıl</button>
+        </div>
+    </form>
+}*@
+
+

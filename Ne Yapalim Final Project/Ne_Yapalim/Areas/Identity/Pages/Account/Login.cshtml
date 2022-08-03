@@ -1,0 +1,87 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+
+    <!-- Icon -->
+    <link data-n-head="ssr" rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
+    <!-- Style -->
+    <link href="style.css" rel="stylesheet" />
+    <link href="~/css/loginRegister.css" rel="stylesheet" />
+    <title>Ne Yapalım</title>
+   
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 bg-image vh-100 mb-5 mb-md-0">
+            </div>
+            <div class="col-md-6 d-flex justify-content-center align-items-center">
+                <div class="w-75">
+                    <h3 class="mb-4 text-center">Ne yapalım</h3>
+                    <h2 class="mb-5 text-center">Giriş Yap</h2>
+                    <form id="account" method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="d-flex bg-light mb-3 rounded-3">
+                            <div class="flex-shrink-1 px-3 align-self-center">
+                                <i class="bi bi-envelope fs-4"></i>
+                            </div>
+                            <div class="form-floating flex-grow-1">
+                                <input type="email" asp-for="Input.Email" class="form-control bg-light border-0" placeholder="name@example.com" />
+                                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                                <label for="floatingInput">Mail Adresiniz</label>
+                            </div>
+                        </div>
+                        <div class="d-flex bg-light mb-3 rounded-3">
+                            <div class="flex-shrink-1 px-3 align-self-center">
+                                <i class="bi bi-unlock fs-4"></i>
+                            </div>
+                            <div class="form-floating flex-grow-1">
+                                <input type="password" asp-for="Input.Password" class="form-control bg-light border-0" placeholder="Password" minlength="8" />
+                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                                <label for="floatingPassword">Şifreniz</label>
+                            </div>
+                        </div>
+                        <div class="form-check float-start">
+                            <label asp-for="Input.RememberMe">
+                                <input asp-for="Input.RememberMe" />
+                                @Html.DisplayNameFor(m => m.Input.RememberMe)
+                            </label>
+                        </div>
+                        <div class="clearfix mb-5"></div>
+                        <button type="submit" class="btn btn-warning py-2 w-100 mb-5">Giriş Yap</button>
+                        <div class="form-group">
+                            <p>
+                                <a id="forgot-password" asp-page="./ForgotPassword">Şifremi Unuttum</a>
+                            </p>
+                            <p>
+                                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Hesabınız yok ise kayıt olunuz </a>
+                            </p>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+@section Scripts
+                {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,29 @@
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Identity
+@using Ne_Yapalim.Data
+@inject SignInManager<CustomUser> SignInManager
+@inject UserManager<CustomUser> UserManager
+@{var Users = await UserManager.GetUserAsync(User); }
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item">
+            @*<a class="nav-link text-dark rounded-circle border border-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"> @Users.Name.ToUpper()</a>*@
+            <div class="dropdown text-end" style="margin-right: 20px;">
+                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="~/images/@Users.ProfilPhoto" alt="mdo" width="32" height="32" class="rounded-circle" /> <span style="color: black;">@CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Users.Name)&nbsp;@CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Users.SurName)</span>
+                </a>
+                <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
+                    <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Ayarlar</a></li>
+                    <li><a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="UserProfile">Profil</a></li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li>
+                        <form class="dropdown-item" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            <button type="submit" class="nav-link btn btn-link text-dark">Oturumu Kapat</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    }
+</ul>

@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>aspnet-Ne_Yapalim-AFD01832-C46C-4476-AFFA-4CD78152E3C4</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20220503124418_Custom-Create3.cs" />
+    <Compile Remove="Data\Migrations\20220503124418_Custom-Create3.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220503131543_Custom_Create4.cs" />
+    <Compile Remove="Data\Migrations\20220503131543_Custom_Create4.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220503131656_Custom_Create5.cs" />
+    <Compile Remove="Data\Migrations\20220503131656_Custom_Create5.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220503175735_Custom_App_Create7.cs" />
+    <Compile Remove="Data\Migrations\20220503175735_Custom_App_Create7.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220503220607_Custom_App_Create6.cs" />
+    <Compile Remove="Data\Migrations\20220503220607_Custom_App_Create6.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220503220835_Custom_app_Create6.cs" />
+    <Compile Remove="Data\Migrations\20220503220835_Custom_app_Create6.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220504171206_Custom_App_Create7.cs" />
+    <Compile Remove="Data\Migrations\20220504171206_Custom_App_Create7.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220504180152_Custom_App_Create7.cs" />
+    <Compile Remove="Data\Migrations\20220504180152_Custom_App_Create7.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220505152947_Custom_App_Create7.cs" />
+    <Compile Remove="Data\Migrations\20220505152947_Custom_App_Create7.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.24" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.25" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.25" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.25" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.25">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+  </ItemGroup>
+
+</Project>

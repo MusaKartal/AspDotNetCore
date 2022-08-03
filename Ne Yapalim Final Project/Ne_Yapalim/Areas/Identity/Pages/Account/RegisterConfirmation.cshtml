@@ -1,0 +1,28 @@
+﻿@page
+@model RegisterConfirmationModel
+@{
+    ViewData["Title"] = "Kayıt Onaylama";
+}
+
+<div class="container" style="min-height:510px;">
+    <div class="row">
+        <div class="col-md p-3">
+            <h1>@ViewData["Title"]</h1>
+            @{
+                if (@Model.DisplayConfirmAccountLink)
+                {
+                    <p>
+                        Başarıyla kayıt oldunuz, Lütfen aşağıdaki butonu kullanarak hesabınızı onaylayın.
+                    </p>
+                    <a class="btn btn-xl btn-success" id="confirm-link" href="@Model.EmailConfirmationUrl">Onayla</a>
+                }
+                else
+                {
+                    <p>
+                        Başarıyla kayıt oldunuz, Lütfen size gelen email ile hesabınızı onaylayın.
+                    </p>
+                }
+            }
+        </div>
+    </div>
+</div>

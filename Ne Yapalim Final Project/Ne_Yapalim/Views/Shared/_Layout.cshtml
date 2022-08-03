@@ -1,0 +1,91 @@
+﻿@inject UserManager<CustomUser> UserManager
+@{var Users = await UserManager.GetUserAsync(User); }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - NE YAPALIM</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    @*<link rel="stylesheet" href="~/css/site.css" />*@
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Icon -->
+    <link data-n-head="ssr" rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+
+    <!-- Style -->
+    <link href="~/css/style.css" rel="stylesheet" asp-append-version="true" />
+
+    <title>Ne Yapalım</title>
+</head>
+<body>
+    <header class="p-3 border-bottom shadow-sm">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a asp-controller="Account" asp-action="HomePage" class="d-flex align-items-center mb-2 mb-lg-0 ">
+                    <img style="height:50px; width:50px;" src="~/css/img/NEYAPALIM.png" alt="Alternate Text" />
+                    <p style="color: black; font-family: 'Verdana, Geneva, sans-serif';">NE YAPALIM</p>
+                </a>
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                </ul>
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                    <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search" />
+                </form>
+                <partial name="_LoginPartial" />
+
+                @*<div class="text-end">
+                        <button type="button" class="btn btn-outline-light me-2">Login</button>
+                        <button type="button" class="btn btn-warning btn-color-1">Sign-up</button>
+                    </div>*@
+            </div>
+        </div>
+    </header>
+
+    <main>
+        @RenderBody()
+    </main>
+  
+    <footer class="border-top bg-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <!-- Hızlı erişim menüleri -->
+                    <ul class="list-unstyled text-small">
+                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Etkinlikler</a></li>
+                        
+                      
+                    </ul>
+                </div>
+
+                <div class="col-12 col-md text-center">
+                    <small class="d-block mb-3 text-muted footer-bottom">© 2019–2022</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        var loadFile = function (event) {
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function () {
+                URL.revokeObjectURL(output.src) // free memory
+            }
+        };
+    </script>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

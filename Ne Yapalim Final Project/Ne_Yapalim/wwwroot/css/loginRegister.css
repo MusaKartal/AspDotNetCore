@@ -1,0 +1,6 @@
+﻿#bg-image {
+    background-image: url('https://getbootstrap.com/docs/5.0/examples/features/unsplash-photo-1.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}

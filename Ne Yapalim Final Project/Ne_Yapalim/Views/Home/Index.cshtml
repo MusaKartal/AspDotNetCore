@@ -1,0 +1,219 @@
+﻿@{
+    Layout = null;
+}
+@{var Users = await UserManager.GetUserAsync(User); }
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Icon -->
+    <link data-n-head="ssr" rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+
+    <!-- Style -->
+    <link href="style.css" rel="stylesheet" />
+
+    <title>projeadi</title>
+</head>
+<body>
+    <header class="p-3 bg-dark text-white">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none logo">
+                    NE YAPALIM
+                </a>
+                
+                <div class="justify-content-end">
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <a id="btn-login" class="btn btn-outline-light me-2" asp-action="HomePage" asp-controller="Account">Giriş Yap</a>
+                        <a class="btn btn-outline-light me-2" asp-action="HomePage" asp-controller="Account">Kayıt OL</a>
+
+                    }
+                    else
+                    {
+                         <a id="btn-login" class="btn btn-outline-light me-2" asp-area="Identity" asp-page="/Account/Login">Giriş Yap</a>
+                        <a class="btn btn-outline-light me-2" asp-area="Identity" asp-page="/Account/Register">Kayıt OL</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="py-5 text-center bg-1">
+            <div class="container">
+                <div class="row py-lg-5">
+                    <div class="col-lg-8 col-md-8 mx-auto">
+                        <h1 class="fw-light">Kommunity'de topluluğunuzu oluşturun!</h1>
+                        <p class="lead text-muted">Kommunity ile tanış: Topluluğunu yönetmek, fiziksel veya çevrim içi etkinlikler düzenlemek için tüm ihtiyacın olan her şey burada.</p>
+                        <p>
+                            <a href="#" class="btn btn-primary my-2 btnStyle1">Etkinlik oluşturun</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Event List Start -->
+        <div class="container px-4 py-5" id="custom-cards">
+            <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5 eventList1">
+                <div class="col-6 align-items-center justify-content-center">
+                    <h2 class="pb-2 border-bottom">Son Eklenenler</h2>
+                </div>
+
+                <div class="col-6 text-end align-items-center justify-content-center">
+                    <div class="btn mb-30">
+                        <span>Tümünü Görüntüle</span>
+                    </div>
+                </div>
+
+                <!-- item start -->
+                <div class="col">
+                    <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('https://getbootstrap.com/docs/5.0/examples/features/unsplash-photo-1.jpg');">
+                        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                            <a href="#">
+                                <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Yazılım Mülakatlarına Hazırlık #13</h2>
+                                <ul class="d-flex list-unstyled mt-auto">
+                                    <li class="me-auto"><i class="far fa-calendar-alt"></i> <span>01.05.2022 14.00</span></li>
+                                    <li class="d-flex align-items-center me-3">
+                                        <i class="fal fa-user-friends m-r-10"></i>
+                                        <small>65 üye katılıyor</small>
+                                    </li>
+                                </ul>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- item end -->
+                <!-- item start -->
+                <div class="col">
+                    <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('https://getbootstrap.com/docs/5.0/examples/features/unsplash-photo-1.jpg');">
+                        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                            <a href="#">
+                                <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Yazılım Mülakatlarına Hazırlık #13</h2>
+                                <ul class="d-flex list-unstyled mt-auto">
+                                    <li class="me-auto"><i class="far fa-calendar-alt"></i> <span>01.05.2022 14.00</span></li>
+                                    <li class="d-flex align-items-center me-3">
+                                        <i class="fal fa-user-friends m-r-10"></i>
+                                        <small>65 üye katılıyor</small>
+                                    </li>
+                                </ul>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- item end -->
+                <!-- item start -->
+                <div class="col">
+                    <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('https://getbootstrap.com/docs/5.0/examples/features/unsplash-photo-1.jpg');">
+                        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                            <a href="#">
+                                <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Yazılım Mülakatlarına Hazırlık #13</h2>
+                                <ul class="d-flex list-unstyled mt-auto">
+                                    <li class="me-auto"><i class="far fa-calendar-alt"></i> <span>01.05.2022 14.00</span></li>
+                                    <li class="d-flex align-items-center me-3">
+                                        <i class="fal fa-user-friends m-r-10"></i>
+                                        <small>65 üye katılıyor</small>
+                                    </li>
+                                </ul>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- item end -->
+            </div>
+        </div>
+        <!-- Event List End -->
+        <!-- Event List 2 -->
+        <div class="album py-5 carStyle2">
+            <div class="container">
+                <h2 class="pb-2 border-bottom">Son Eklenenler</h2>
+
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <a href="">
+                                <img src="https://media.kommunity.com/communities/geometry-venture-development/events/girisim-gelistirme-seminer-serisi-79-finansal-bakis-acisi-e36578d2/28210/girisimgelistirme2-1.png?p=event-640" />
+                                <div class="card-body">
+                                    <p class="card-text">Yazılım Mülakatlarına Hazırlık #13</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">
+                                            <i class="far fa-calendar-alt"></i>
+                                            <span>01.05.2022 14.00</span>
+                                        </small>
+                                        <small class="text-muted">
+                                            <i class="fal fa-user-friends m-r-10"></i>
+                                            <small>65 üye katılıyor</small>
+                                        </small>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Event List 2 End -->
+    </main>
+
+    <footer class="border-top bg-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <!-- Hızlı erişim menüleri -->
+                    <ul class="list-unstyled text-small">
+                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Etkinlikler</a></li>
+                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Random feature</a></li>
+                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Team feature</a></li>
+                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Stuff for developers</a></li>
+                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Another one</a></li>
+                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Last time</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-12 col-md text-center">
+                    <small class="d-block mb-3 text-muted footer-bottom">© 2017–2021</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
